@@ -8,6 +8,8 @@
 const { getTodayPoem } = require('../lib/poems');
 
 const DIVIDER = '─'.repeat(16);
+const WEBSITE_URL = 'https://dailypoem.getlessen.com';
+const NEWS_AD = `\n\n📰 姊妹作品【日日一報】\n每天一則精選新聞摘要\n🌐 ${`https://dailynews.getlessen.com/`}\n➕ 加入 LINE：https://lin.ee/VTiNkom`;
 
 function formatPoemBroadcast(poem) {
   const bodyText = Array.isArray(poem.body) ? poem.body.join('\n') : poem.body;
@@ -18,7 +20,7 @@ function formatPoemBroadcast(poem) {
     },
     {
       type: 'text',
-      text: `🌿 呼吸提醒\n\n花一分鐘，試試方塊呼吸法：\n\n吸氣 4 秒 → 屏息 4 秒\n吐氣 4 秒 → 屏息 4 秒\n\n重複 3 次，感受身體的放鬆。\n\n願文字成為你的呼吸 ✨`,
+      text: `🌿 呼吸提醒\n\n花一分鐘，試試方塊呼吸法：\n\n吸氣 4 秒 → 屏息 4 秒\n吐氣 4 秒 → 屏息 4 秒\n\n重複 3 次，感受身體的放鬆。\n\n願文字成為你的呼吸 ✨\n\n🌐 在網站閱讀更多：\n${WEBSITE_URL}${NEWS_AD}`,
     },
   ];
 }

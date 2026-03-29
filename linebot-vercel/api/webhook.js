@@ -41,6 +41,8 @@ function validateSignature(body, signature) {
 // ===== 格式化訊息 =====
 const DIVIDER = '─'.repeat(16);
 const PUSH_HOUR = process.env.PUSH_HOUR || 8;
+const WEBSITE_URL = 'https://dailypoem.getlessen.com';
+const NEWS_AD = `\n\n📰 姊妹作品【日日一報】\n每天一則精選新聞摘要\n🌐 https://dailynews.getlessen.com/\n➕ 加入 LINE：https://lin.ee/VTiNkom`;
 
 function formatPoemMessage(poem) {
   const bodyText = Array.isArray(poem.body) ? poem.body.join('\n') : poem.body;
@@ -51,7 +53,7 @@ function formatPoemMessage(poem) {
     },
     {
       type: 'text',
-      text: `🌿 呼吸提醒\n\n花一分鐘，試試方塊呼吸法：\n\n吸氣 4 秒 → 屏息 4 秒\n吐氣 4 秒 → 屏息 4 秒\n\n重複 3 次，感受身體的放鬆。\n\n願文字成為你的呼吸 ✨`,
+      text: `🌿 呼吸提醒\n\n花一分鐘，試試方塊呼吸法：\n\n吸氣 4 秒 → 屏息 4 秒\n吐氣 4 秒 → 屏息 4 秒\n\n重複 3 次，感受身體的放鬆。\n\n願文字成為你的呼吸 ✨\n\n🌐 在網站閱讀更多：\n${WEBSITE_URL}${NEWS_AD}`,
     },
   ];
 }
@@ -71,7 +73,7 @@ function getHelpMessage() {
   return [
     {
       type: 'text',
-      text: `📖 日日一詩 使用指南\n${DIVIDER}\n\n傳送以下文字來互動：\n\n✦「今日」— 查看今天的詩\n✦「隨機」— 隨機抽一首詩\n✦「呼吸」— 呼吸練習引導\n✦「說明」— 查看使用指南\n\n每天早上 ${PUSH_HOUR} 點\n會自動推送一首詩給你 🌅`,
+      text: `📖 日日一詩 使用指南\n${DIVIDER}\n\n傳送以下文字來互動：\n\n✦「今日」— 查看今天的詩\n✦「隨機」— 隨機抽一首詩\n✦「呼吸」— 呼吸練習引導\n✦「網站」— 開啟日日一詩網站\n✦「說明」— 查看使用指南\n\n每天早上 ${PUSH_HOUR} 點\n會自動推送一首詩給你 🌅`,
     },
   ];
 }
@@ -105,6 +107,15 @@ async function handleMessage(event) {
     case '放鬆':
       return replyMessage(event.replyToken, getBreatheMessage());
 
+    case '網站':
+    case '官網':
+      return replyMessage(event.replyToken, [
+        {
+          type: 'text',
+          text: `🌐 日日一詩網站\n\n${WEBSITE_URL}\n\n在網站上瀏覽所有詩作 ✨`,
+        },
+      ]);
+
     case '說明':
     case '幫助':
     case '選單':
@@ -129,7 +140,7 @@ async function handleFollow(event) {
   return replyMessage(event.replyToken, [
     {
       type: 'text',
-      text: `🌿 歡迎來到「日日一詩」\n\n這裡，每天有一首詩等著你\n還有一段呼吸的時光\n\n傳送「今日」立即閱讀今天的詩\n傳送「隨機」抽一首隨機的詩\n傳送「呼吸」來一段放鬆練習\n\n願文字成為你的呼吸 ✨`,
+      text: `🌿 歡迎來到「日日一詩」\n\n這裡，每天有一首詩等著你\n還有一段呼吸的時光\n\n傳送「今日」立即閱讀今天的詩\n傳送「隨機」抽一首隨機的詩\n傳送「呼吸」來一段放鬆練習\n\n🌐 也可以到網站閱讀：\n${WEBSITE_URL}\n\n願文字成為你的呼吸 ✨${NEWS_AD}`,
     },
   ]);
 }
