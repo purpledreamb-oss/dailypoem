@@ -42,7 +42,7 @@ function validateSignature(body, signature) {
 const DIVIDER = '─'.repeat(16);
 const PUSH_HOUR = process.env.PUSH_HOUR || 8;
 const WEBSITE_URL = 'https://dailypoem.getlessen.com';
-const DAILY_AD = `\n\n✦ 每一天，都值得好好感受\n📰 日日一報：https://dailynews.getlessen.com/\n📖 日日一詩：https://dailypoem.getlessen.com/\n🎨 日日一色：https://dailycolor.getlessen.com/`;
+const DAILY_AD = '';
 
 function formatPoemMessage(poem) {
   const bodyText = Array.isArray(poem.body) ? poem.body.join('\n') : poem.body;
