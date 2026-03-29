@@ -42,7 +42,7 @@ function validateSignature(body, signature) {
 const DIVIDER = '─'.repeat(16);
 const PUSH_HOUR = process.env.PUSH_HOUR || 8;
 const WEBSITE_URL = 'https://dailypoem.getlessen.com';
-const NEWS_AD = `\n\n📰 姊妹作品【日日一報】\n每天一則精選新聞摘要\n🌐 https://dailynews.getlessen.com/\n➕ 加入 LINE：https://lin.ee/VTiNkom`;
+const DAILY_AD = `\n\n✦ 每一天，都值得好好感受\n📰 日日一報：https://dailynews.getlessen.com/\n📖 日日一詩：https://dailypoem.getlessen.com/\n🎨 日日一色：https://dailycolor.getlessen.com/`;
 
 function formatPoemMessage(poem) {
   const bodyText = Array.isArray(poem.body) ? poem.body.join('\n') : poem.body;
@@ -53,7 +53,7 @@ function formatPoemMessage(poem) {
     },
     {
       type: 'text',
-      text: `🌿 呼吸提醒\n\n花一分鐘，試試方塊呼吸法：\n\n吸氣 4 秒 → 屏息 4 秒\n吐氣 4 秒 → 屏息 4 秒\n\n重複 3 次，感受身體的放鬆。\n\n願文字成為你的呼吸 ✨\n\n🌐 在網站閱讀更多：\n${WEBSITE_URL}${NEWS_AD}`,
+      text: `🌿 呼吸提醒\n\n花一分鐘，試試方塊呼吸法：\n\n吸氣 4 秒 → 屏息 4 秒\n吐氣 4 秒 → 屏息 4 秒\n\n重複 3 次，感受身體的放鬆。\n\n願文字成為你的呼吸 ✨\n\n🌐 在網站閱讀更多：\n${WEBSITE_URL}${DAILY_AD}`,
     },
   ];
 }
@@ -140,7 +140,7 @@ async function handleFollow(event) {
   return replyMessage(event.replyToken, [
     {
       type: 'text',
-      text: `🌿 歡迎來到「日日一詩」\n\n這裡，每天有一首詩等著你\n還有一段呼吸的時光\n\n傳送「今日」立即閱讀今天的詩\n傳送「隨機」抽一首隨機的詩\n傳送「呼吸」來一段放鬆練習\n\n🌐 也可以到網站閱讀：\n${WEBSITE_URL}\n\n願文字成為你的呼吸 ✨${NEWS_AD}`,
+      text: `🌿 歡迎來到「日日一詩」\n\n這裡，每天有一首詩等著你\n還有一段呼吸的時光\n\n傳送「今日」立即閱讀今天的詩\n傳送「隨機」抽一首隨機的詩\n傳送「呼吸」來一段放鬆練習\n\n🌐 也可以到網站閱讀：\n${WEBSITE_URL}\n\n願文字成為你的呼吸 ✨${DAILY_AD}`,
     },
   ]);
 }
