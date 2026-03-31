@@ -49,11 +49,7 @@ function formatPoemMessage(poem) {
   return [
     {
       type: 'text',
-      text: `📖 今日一詩\n${DIVIDER}\n\n${poem.title}\n${poem.author}\n\n${bodyText}\n\n${DIVIDER}\n\n💭 ${poem.note}`,
-    },
-    {
-      type: 'text',
-      text: `🌿 呼吸提醒\n\n花一分鐘，試試方塊呼吸法：\n\n吸氣 4 秒 → 屏息 4 秒\n吐氣 4 秒 → 屏息 4 秒\n\n重複 3 次，感受身體的放鬆。\n\n願文字成為你的呼吸 ✨\n\n🌐 在網站閱讀更多：\n${WEBSITE_URL}${DAILY_AD}`,
+      text: `📖 今日一詩\n${DIVIDER}\n\n${poem.title}\n${poem.author}\n\n${bodyText}\n\n${DIVIDER}\n\n💭 ${poem.note}\n\n🌐 ${WEBSITE_URL}`,
     },
   ];
 }
@@ -73,16 +69,7 @@ function getHelpMessage() {
   return [
     {
       type: 'text',
-      text: `📖 日日一詩 使用指南\n${DIVIDER}\n\n傳送以下文字來互動：\n\n✦「今日」— 查看今天的詩\n✦「隨機」— 隨機抽一首詩\n✦「呼吸」— 呼吸練習引導\n✦「網站」— 開啟日日一詩網站\n✦「說明」— 查看使用指南\n\n每天早上 ${PUSH_HOUR} 點\n會自動推送一首詩給你 🌅`,
-    },
-  ];
-}
-
-function getBreatheMessage() {
-  return [
-    {
-      type: 'text',
-      text: `🌿 方塊呼吸練習\n${DIVIDER}\n\n找一個舒服的姿勢，開始：\n\n1️⃣ 吸氣（數 1、2、3、4）\n   讓空氣慢慢充滿\n\n2️⃣ 屏息（數 1、2、3、4）\n   穩穩地停在這裡\n\n3️⃣ 吐氣（數 1、2、3、4）\n   輕輕地放掉一切\n\n4️⃣ 屏息（數 1、2、3、4）\n   安靜地等待下一次\n\n🔁 重複 3–5 次\n\n你做得很好。\n此刻，你只需要呼吸。✨`,
+      text: `📖 日日一詩 使用指南\n${DIVIDER}\n\n傳送以下文字來互動：\n\n✦「今日」— 查看今天的詩\n✦「隨機」— 隨機抽一首詩\n✦「網站」— 開啟日日一詩網站\n✦「說明」— 查看使用指南\n\n每天早上 ${PUSH_HOUR} 點\n會自動推送一首詩給你 🌅`,
     },
   ];
 }
@@ -102,10 +89,6 @@ async function handleMessage(event) {
     case '再一首':
     case '抽詩':
       return replyMessage(event.replyToken, formatRandomPoemMessage());
-
-    case '呼吸':
-    case '放鬆':
-      return replyMessage(event.replyToken, getBreatheMessage());
 
     case '網站':
     case '官網':
@@ -129,7 +112,7 @@ async function handleMessage(event) {
       return replyMessage(event.replyToken, [
         {
           type: 'text',
-          text: `謝謝你的文字 🍂\n\n試試傳「今日」看今天的詩\n或傳「呼吸」來一段放鬆練習\n\n（傳「說明」查看完整功能）`,
+          text: `謝謝你的文字 🍂\n\n試試傳「今日」看今天的詩\n或傳「隨機」抽一首詩\n\n（傳「說明」查看完整功能）`,
         },
       ]);
   }
@@ -140,7 +123,7 @@ async function handleFollow(event) {
   return replyMessage(event.replyToken, [
     {
       type: 'text',
-      text: `🌿 歡迎來到「日日一詩」\n\n這裡，每天有一首詩等著你\n還有一段呼吸的時光\n\n傳送「今日」立即閱讀今天的詩\n傳送「隨機」抽一首隨機的詩\n傳送「呼吸」來一段放鬆練習\n\n🌐 也可以到網站閱讀：\n${WEBSITE_URL}\n\n願文字成為你的呼吸 ✨${DAILY_AD}`,
+      text: `🌿 歡迎來到「日日一詩」\n\n這裡，每天有一首詩等著你\n\n傳送「今日」立即閱讀今天的詩\n傳送「隨機」抽一首隨機的詩\n\n🌐 也可以到網站閱讀：\n${WEBSITE_URL}\n\n願文字成為你的呼吸 ✨${DAILY_AD}`,
     },
   ]);
 }
